@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="text-center">
+        <h2 class="text-light">Inventario</h2>
+        <a href="{% url 'generar_pdf' %}" class="btn btn-dark mx-auto">Descargar inventario</a>
+    </div>
+    <div class="row my-4 text-center">
+        <table class="table table-striped text-light">
+            <tr>
+                <th scope="col">Referencia</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Numero de pieza</th>
+                <th scope="col">Existencias</th>
+                <th scope="col">Conteo fisico</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Nivel</th>
+                <th scope="col">Seccion</th>
+            </tr>
+            {% for producto in productos_inventario %}
+                <tr>
+                    <td scope="row">
+                        <img class="img-fluid" src="{{producto.imagen.url}}" alt="Imagen del Producto" width="100em">
+                    </td>
+                    <td scope="row">{{producto.nombre}}</td>
+                    <td scope="row">{{producto.numero_De_Pieza}}</td>
+                    <td scope="row">{{producto.existencias}}</td>
+                    <td scope="row">{{producto.conteo_Fisico}}</td>
+                    <td scope="row">{{producto.nivel}}</td>
+                    <td scope="row">{{ producto.get_seccion_display }}</td>
+                    <td scope="row">{{producto.get_categoria_display}}</td>
+                  </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock  %}

@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <h1 class="text-center text-white">SignUp</h1>
+        
+    <form class="form-control" method="post">
+        {% csrf_token %}
+        {{USERform.as_p}}
+        <button type="submit" class="btn btn-dark">Crear Cuenta</button>
+        <br>
+        <h5>{{mensaje}}</h5>        
+    </form>
+    
+{% endblock  %}

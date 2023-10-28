@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <!-- <form class="d-flex" role="search">
+        <input class="form-control me-2 bg-black" type="search" placeholder="Buscar" />
+        &nbsp;
+        <button class="btn btn-outline-dark bg-black" type="submit">Buscar</button>
+    </form> -->
+    &nbsp;
+    <h1 class="text-center text-light">Catalogo</h1>
+    <div class="row my-4 text-center">
+        {% for producto in productos %}
+            <div class="col-md-4">
+                <div class="card bg-black">
+                    <div class="card-body text-light">
+                        <img class="img-fluid" src="{{producto.imagen.url}}" alt="Imagen del Producto">
+                        <h2>{{producto.nombre}}</h2>
+                        <h3>{{producto.numero_De_Pieza}}</h3>
+                        <p>{{producto.descripcion}}</p>
+                        <h3>{{producto.precio}}</h3>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock  %}

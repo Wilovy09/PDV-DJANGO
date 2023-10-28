@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center">Iniciar sesion</h1>
+                {{AUTHform | crispy}}
+                <br>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-dark" type="submit">Iniciar sesion</button>
+                </div>
+                <br>
+                <h5 class="text-center text-black">{{mensaje}}</h5>
+            </div>
+        </div>
+    </form>
+
+{% endblock  %}
