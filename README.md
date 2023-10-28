@@ -5,3 +5,15 @@
 ## (WIP)
 
 Se esta usando sqlite3 como DB
+
+### Instalar dependencias
+
+```bash
+pip install requirements.txt
+```
+
+### Iniciar server
+
+```bash
+python manage.py runserver
+```
