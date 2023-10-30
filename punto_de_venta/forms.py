@@ -11,7 +11,7 @@ class ClienteForm(forms.ModelForm):
 class PedidoProductoForm(forms.ModelForm):
     class Meta:
         model = pedidoProducto
-        fields = '__all__'
+        fields = ['Cliente','Nombre_De_Pieza','Cantidad']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -1,5 +1,24 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+
     <h1 class="text-light text-center">Pedidos pendientes</h1>
+
+    <table class="table table-striped text-light text-center">
+        <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Nombre de Pieza</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha</th>
+        </tr>
+        {% for pedido in PEDIDOS %}
+            <tr>
+                <td scope="row">{{pedido.Cliente}}</td>
+                <td scope="row">{{pedido.Nombre_De_Pieza}}</td>
+                <td scope="row">{{pedido.Cantidad}}</td>
+                <td scope="row">{{pedido.fecha|date:'d M Y'}}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        
 {% endblock  %}

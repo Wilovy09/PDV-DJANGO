@@ -1,5 +1,6 @@
 from django.db import models
 from catalogo.models import Producto
+from datetime import date
 
 class clientes(models.Model):
     nombre = models.CharField(max_length=100)
@@ -15,6 +16,7 @@ class pedidoProducto(models.Model):
     Cliente = models.ForeignKey(clientes, on_delete=models.CASCADE)
     Nombre_De_Pieza = models.ForeignKey(Producto, on_delete=models.CASCADE)
     Cantidad = models.CharField(max_length=150)
+    fecha = models.DateField(default=date.today)
 
     def __str__(self):
-        return self.Cliente
+        return f"Pedido de {self.Cliente.nombre} hecho el {self.fecha}"
