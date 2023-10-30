@@ -1,4 +1,5 @@
 from django.db import models
+from catalogo.models import Producto
 
 class clientes(models.Model):
     nombre = models.CharField(max_length=100)
@@ -9,3 +10,11 @@ class clientes(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class pedidoProducto(models.Model):
+    Cliente = models.ForeignKey(clientes, on_delete=models.CASCADE)
+    Nombre_De_Pieza = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    Cantidad = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.Cliente

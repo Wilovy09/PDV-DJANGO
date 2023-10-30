@@ -9,7 +9,9 @@
         <!-- Container Modal Registrar Cliente -->
         <div class="container">
             <!-- Registrar cliente modal -->
-            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#registrarCliente">Registrar Cliente</button>
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#registrarCliente">Registrar Cliente</button>
+            </div>
             <!-- Modal -->
             <div class="modal fade" id="registrarCliente" tabindex="-1" role="dialog" aria-labelledby="registrarClienteLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -23,7 +25,7 @@
                     <div class="modal-body">
                         <form method="post">
                             {% csrf_token %}
-                            {{form | crispy}}
+                            {{ form | crispy }}
                             <button type="submit" class="btn btn-dark">Guardar cliente</button>
                         </form>
                     </div>
@@ -33,24 +35,18 @@
             <!-- FIN MODAL Registrar Clientes -->
         </div>
         <br>
-        <select class="form-select btn-dark btn" aria-label="Default select example">
-            <option class="text-center" value="Seleccione cliente">Seleccione cliente</option>
-            {% for cliente in clientess %}
-            <option class="text-center" value="{{cliente.nombre}}">{{cliente.nombre}}</option>
-            {% endfor %}
-        </select>
-        <br>
-        <br>
         <form method="post">
             {% csrf_token %}
-            <select class="form-select btn-dark btn" aria-label="Default select example">
-                <option class="text-center" value="Seleccione cliente">Seleccione pieza</option>
-                {% for producto in productos_lista %}
-                <option class="text-center" value="{{producto.nombre}}">{{producto.nombre}}</option>
-                {% endfor %}
-                <input type="text" placeholder="Cantidad" value="0">
-                <button type="submit" class="btn btn-dark">Agregar producto</button>
-            </select>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-center">{{pedidoSTATUS}}</h5>
+                    {{pedidoFORM | crispy}}
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-dark">Agregar producto</button>
+                    </div>
+                    <br>
+                </div>
+            </div>
         </form>
     </div>
 {% endblock  %}
