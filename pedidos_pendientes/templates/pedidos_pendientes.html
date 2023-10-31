@@ -1,9 +1,6 @@
 {% extends 'layout.html' %}
-
 {% block content %}
-
     <h1 class="text-light text-center">Pedidos pendientes</h1>
-
     {% for cliente, fechas_pedidos in PEDIDOS_AGRUPADOS.items %}
     {% for fecha, pedidos_fecha in fechas_pedidos.items %}
         <div class="my-3">
@@ -13,22 +10,18 @@
                 <tr>
                     <th scope="col">Nombre de Pieza</th>
                     <th scope="col">Cantidad</th>
-                    <th scope="col">Precio Unitario</th>
+                    <!-- <th scope="col">Precio Unitario</th> -->
                     <th scope="col">Precio por cantidad</th>
-                    <th scope="col">Total: {{total}}</th>
-                </tr>
-                
+                </tr>                
                 {% for pedido in pedidos_fecha %}
-                        <tr>
-                            <td scope="row">{{ pedido.Nombre_De_Pieza }}</td>
-                            <td scope="row">{{ pedido.Cantidad }}</td>
-                            <td scope="row">{{ precio }}</td>
-                            <td scope="row">{{ pedido.total }}</td>
-                            <td scope=""></td>
-                        </tr>
+                <tr>
+                    <td scope="row">{{ pedido.Nombre_De_Pieza }}</td>
+                    <td scope="row">{{ pedido.Cantidad }}</td>
+                    <!-- <td scope="row">{{ precio }}</td> -->
+                    <td scope="row">{{ pedido.total }}</td>
+                </tr>
                 {% endfor %}
             </table>
-        {% endfor %}
     {% endfor %}
-    
+    {% endfor %}
 {% endblock %}
