@@ -4,21 +4,31 @@
 
     <h1 class="text-light text-center">Pedidos pendientes</h1>
 
-    <table class="table table-striped text-light text-center">
-        <tr>
-            <th scope="col">Cliente</th>
-            <th scope="col">Nombre de Pieza</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Fecha</th>
-        </tr>
-        {% for pedido in PEDIDOS %}
-            <tr>
-                <td scope="row">{{pedido.Cliente}}</td>
-                <td scope="row">{{pedido.Nombre_De_Pieza}}</td>
-                <td scope="row">{{pedido.Cantidad}}</td>
-                <td scope="row">{{pedido.fecha|date:'d M Y'}}</td>
-            </tr>
+    {% for cliente, fechas_pedidos in PEDIDOS_AGRUPADOS.items %}
+    {% for fecha, pedidos_fecha in fechas_pedidos.items %}
+        <div class="my-3">
+            <h3 class="bg-black text-light text-center py-2"><strong>{{ cliente }}</strong> realizo pedido el <strong>{{ fecha|date:'d M Y' }}</strong></h3>
+        </div>
+            <table class="table table-striped text-light text-center">
+                <tr>
+                    <th scope="col">Nombre de Pieza</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Precio Unitario</th>
+                    <th scope="col">Precio por cantidad</th>
+                    <th scope="col">Total: {{total}}</th>
+                </tr>
+                
+                {% for pedido in pedidos_fecha %}
+                        <tr>
+                            <td scope="row">{{ pedido.Nombre_De_Pieza }}</td>
+                            <td scope="row">{{ pedido.Cantidad }}</td>
+                            <td scope="row">{{ precio }}</td>
+                            <td scope="row">{{ pedido.total }}</td>
+                            <td scope=""></td>
+                        </tr>
+                {% endfor %}
+            </table>
         {% endfor %}
-        </table>
-        
-{% endblock  %}
+    {% endfor %}
+    
+{% endblock %}

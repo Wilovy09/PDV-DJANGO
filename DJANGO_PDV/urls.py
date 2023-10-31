@@ -9,6 +9,7 @@ from punto_de_venta import views as puntodeventa_views
 from pedidos_pendientes import views as pedidospendientes_views
 from users import views as user_views
 
+
 urlpatterns = [
     path('generar_pdf/', inventario_views.generar_pdf, name='generar_pdf'),
     path('admin/', admin.site.urls),
