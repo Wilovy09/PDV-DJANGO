@@ -22,9 +22,16 @@ def punto_de_venta(request):
                 data['mensaje'] = 'Cliente guardado'
             else:
                 data['form'] = formulario
-            
             if pedidoFORM.is_valid():
                 pedidoFORM.save()
+                id_producto_seleccionado = int(pedidoFORM['Nombre_De_Pieza'].value())
+                producto_seleccionado = Producto.objects.get(id=id_producto_seleccionado)
+                cantidad_pedida = int(pedidoFORM['Cantidad'].value())
+                for productos in producto:
+                    if id_producto_seleccionado == productos.id:
+                        producto_seleccionado.conteo_Fisico -= cantidad_pedida
+                        producto_seleccionado.existencias -= cantidad_pedida
+                        producto_seleccionado.save()
                 data['pedidoSTATUS'] = 'Pedido levantado'
             else:
                 data['pedidoFORM'] = pedidoFORM

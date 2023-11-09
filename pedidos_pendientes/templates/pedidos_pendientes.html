@@ -1,27 +1,32 @@
 {% extends 'layout.html' %}
+
 {% block content %}
-    <h1 class="text-light text-center">Pedidos pendientes</h1>
-    {% for cliente, fechas_pedidos in PEDIDOS_AGRUPADOS.items %}
-    {% for fecha, pedidos_fecha in fechas_pedidos.items %}
-        <div class="my-3">
-            <h3 class="bg-black text-light text-center py-2"><strong>{{ cliente }}</strong> realizo pedido el <strong>{{ fecha|date:'d M Y' }}</strong></h3>
-        </div>
-            <table class="table table-striped text-light text-center">
+    <div class="row my-4 text-center">
+        <table class="table table-striped text-light">
+            <tr>
+                <th scope="col">Referencia</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Numero de pieza</th>
+                <th scope="col">Existencias</th>
+                <th scope="col">Conteo fisico</th>
+                <th scope="col">Realizar pedido</th>
+            </tr>
+            {% for producto in productos %}
                 <tr>
-                    <th scope="col">Nombre de Pieza</th>
-                    <th scope="col">Cantidad</th>
-                    <!-- <th scope="col">Precio Unitario</th> -->
-                    <th scope="col">Precio por cantidad</th>
-                </tr>                
-                {% for pedido in pedidos_fecha %}
-                <tr>
-                    <td scope="row">{{ pedido.Nombre_De_Pieza }}</td>
-                    <td scope="row">{{ pedido.Cantidad }}</td>
-                    <!-- <td scope="row">{{ precio }}</td> -->
-                    <td scope="row">{{ pedido.total }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-    {% endfor %}
-    {% endfor %}
-{% endblock %}
+                    <td scope="row">
+                        <img class="img-fluid" src="{{producto.imagen.url}}" alt="Imagen del Producto" width="100em">
+                    </td>
+                    <td scope="row">{{producto.nombre}}</td>
+                    <td scope="row">{{producto.numero_De_Pieza}}</td>
+                    <td scope="row">{{producto.existencias}}</td>
+                    <td scope="row">{{producto.conteo_Fisico}}</td>
+                    {% if producto.conteo_Fisico <= 5 %}
+                        <td scope="row">✅</td>
+                    {% else %}
+                        <td scope="row">❌</td>
+                    {% endif %}
+                  </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock  %}

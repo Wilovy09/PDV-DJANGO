@@ -29,8 +29,8 @@ class Producto(models.Model):
     numero_De_Pieza = models.CharField(max_length=100)
     precio = models.CharField(max_length=51)
 
-    existencias = models.CharField(max_length=50)
-    conteo_Fisico = models.CharField(max_length=50)
+    existencias = models.IntegerField()
+    conteo_Fisico = models.IntegerField()
 
     categoria = models.IntegerField(choices=categorias)
     nivel = models.IntegerField(choices=niveles)
