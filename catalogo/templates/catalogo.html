@@ -1,27 +1,50 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <!-- <form class="d-flex" role="search">
-        <input class="form-control me-2 bg-black" type="search" placeholder="Buscar" />
-        &nbsp;
-        <button class="btn btn-outline-dark bg-black" type="submit">Buscar</button>
-    </form> -->
-    &nbsp;
-    <h1 class="text-center text-light">Catalogo</h1>
-    <div class="row my-4 text-center">
-        {% for producto in productos %}
-            <div class="col-md-4">
-                <div class="card bg-black">
-                    <div class="card-body text-light">
-                        <img class="img-fluid" src="{{producto.imagen.url}}" alt="Imagen del Producto">
-                        <h2>{{producto.nombre}}</h2>
-                        <h3>{{producto.numero_De_Pieza}}</h3>
-                        <p>{{producto.descripcion}}</p>
-                        <h3>{{producto.precio}}</h3>
-                    </div>
+    <h1 class="text-center text-white">Catalogo</h1>
+    <!-- Container Modal Filtros -->
+    <div class="container">
+        <!-- Filtros modal -->
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#registrarCliente">Filtros</button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="registrarCliente" tabindex="-1" role="dialog" aria-labelledby="registrarClienteLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="registrarClienteLabel">Filtros</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-dark">Aplicar filtros</button>
+                    </form>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-
+            </div>
+        </div>
+        <!-- FIN MODAL Filtros -->
+        <!-- Productos -->
+        <div class="col-md-10">
+            <div class="row my-4 text-center">
+                {% for producto in productos %}
+                    <div class="col-md-4">
+                        <div class="card bg-black">
+                            <div class="card-body text-light">
+                                <img class="img-fluid" src="{{producto.imagen.url}}" alt="Imagen del Producto">
+                                <h2>{{producto.nombre}}</h2>
+                                <h3>{{producto.numero_De_Pieza}}</h3>
+                                <p>{{producto.descripcion}}</p>
+                                <h3>{{producto.precio}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
 {% endblock  %}

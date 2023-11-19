@@ -20,10 +20,10 @@
                     <td scope="row">{{producto.numero_De_Pieza}}</td>
                     <td scope="row">{{producto.existencias}}</td>
                     <td scope="row">{{producto.conteo_Fisico}}</td>
-                    {% if producto.conteo_Fisico <= 5 %}
-                        <td scope="row">✅</td>
-                    {% else %}
+                    {% if producto.conteo_Fisico >= 5 %}
                         <td scope="row">❌</td>
+                    {% else %}
+                        <td scope="row">✅</td>
                     {% endif %}
                   </tr>
             {% endfor %}

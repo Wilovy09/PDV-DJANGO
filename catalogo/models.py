@@ -38,3 +38,11 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+class filtros(models.Model):
+    todos = models.BooleanField(default=False)
+    comunicacion = models.BooleanField(default=False)
+    seguridad = models.BooleanField(default=False)
+    educacion = models.BooleanField(default=False)
+    microcontroladores = models.BooleanField(default=False)
+    accesorios = models.BooleanField(default=False)
